@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import './App.css'
 
 import {
@@ -21,7 +21,17 @@ function App() {
 
 
 
-  const [modules, setModules] = useState([]);
+  const [modules, setModules] = useState(() => {
+
+    const savedModules = localStorage.getItem('modules');
+
+    if (savedModules) {
+      return JSON.parse(savedModules);
+    }
+
+    return [];
+  });
+
   
   function addModule() {
     const newModule = {
@@ -37,7 +47,9 @@ function App() {
     setModules([...modules, newModule]);
   }
 
-
+  useEffect(() => {
+    localStorage.setItem('modules', JSON.stringify(modules));
+  }, [modules]);
 
   const caPercent = getCaPercent(caScore, caMax);
 
