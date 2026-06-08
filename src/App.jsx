@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 
+import {
+  getCaPercent,
+  getCaContribution,
+  getRequiredExamPercent,
+  getStatus
+} from './utils/gradeCalculations';
+
 function App() {
   const [moduleName, setModuleName] = useState('');
 
@@ -12,23 +19,22 @@ function App() {
 
   const [targetGrade, setTargetGrade] = useState('');
 
-  const caPercent = 
-    caMax > 0 ? (caScore / (caMax)) * 100 : 0;
 
-  const caContribution = 
-    caPercent * ((caWeight) / 100);
 
-  const requiredExamPercent =
-    Number(examWeight) > 0 ?
-    ((targetGrade - caContribution) / (examWeight / 100)) : 0;
+  const caPercent = getCaPercent(caScore, caMax);
 
-  function getStatus(requiredExam) {
-    if (requiredExam <= 0) return "Target grade already achieved";
-    if (requiredExam <= 40) return "Target grade is safe";
-    if (requiredExam <= 60) return "Target grade is achievable";
-    if (requiredExam <= 80) return "Target grade is difficult";
-    return "Target grade is extremely difficult";
-  }
+  const caContribution = getCaContribution(
+    caPercent, 
+    caWeight
+  );
+
+  const requiredExamPercent = getRequiredExamPercent(
+    targetGrade,
+    caContribution,
+    examWeight
+  );
+
+  const status = getStatus(requiredExamPercent);
 
   return (
     <main className="App">
@@ -101,8 +107,11 @@ function App() {
 
         <section className="results">
           <h2>{moduleName || "Results"}</h2>
+
+          <p>CA Percentage: {caPercent.toFixed(1)}%</p>
+          <p>CA Contribution: {caContribution.toFixed(1)}%</p>
           <p>Required exam score: {requiredExamPercent.toFixed(1)}%</p>
-          <p>Status: {getStatus(requiredExamPercent)}</p>
+          <p>Status: {status}</p>
         </section>
       </section>
     </main>
