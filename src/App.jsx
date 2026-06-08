@@ -21,6 +21,24 @@ function App() {
 
 
 
+  const [modules, setModules] = useState([]);
+  
+  function addModule() {
+    const newModule = {
+      id: crypto.randomUUID(),
+      moduleName,
+      caScore,
+      caMax,
+      caWeight,
+      examWeight,
+      targetGrade
+    };
+
+    setModules([...modules, newModule]);
+  }
+
+
+
   const caPercent = getCaPercent(caScore, caMax);
 
   const caContribution = getCaContribution(
@@ -35,6 +53,10 @@ function App() {
   );
 
   const status = getStatus(requiredExamPercent);
+
+
+
+
 
   return (
     <main className="App">
@@ -105,6 +127,11 @@ function App() {
         </label>
 
 
+        <button onClick={addModule}>
+          Add Module
+        </button>
+
+
         <section className="results">
           <h2>{moduleName || "Results"}</h2>
 
@@ -113,6 +140,21 @@ function App() {
           <p>Required exam score: {requiredExamPercent.toFixed(1)}%</p>
           <p>Status: {status}</p>
         </section>
+      </section>
+
+      <section className="card">
+        <h2>Your Modules</h2>
+
+        {modules.map((module) => (
+          <div key={module.id} className="results">
+            <h3>{module.moduleName}</h3>
+            <p>CA Score: {module.caScore}</p>
+            <p>CA Max: {module.caMax}</p>
+            <p>CA Weight: {module.caWeight}%</p>
+            <p>Exam Weight: {module.examWeight}%</p>
+            <p>Target Grade: {module.targetGrade}%</p>
+          </div>
+        ))}
       </section>
     </main>
   );
