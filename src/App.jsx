@@ -47,6 +47,11 @@ function App() {
     setModules([...modules, newModule]);
   }
 
+
+  function clearModules(id) {
+    setModules(modules.filter(module => module.id !== id));
+  }
+
   useEffect(() => {
     localStorage.setItem('modules', JSON.stringify(modules));
   }, [modules]);
@@ -165,6 +170,14 @@ function App() {
             <p>CA Weight: {module.caWeight}%</p>
             <p>Exam Weight: {module.examWeight}%</p>
             <p>Target Grade: {module.targetGrade}%</p>
+
+            <button onClick={() => clearModules(module.id)}>
+
+              Remove Module
+
+            </button>
+
+
           </div>
         ))}
       </section>
