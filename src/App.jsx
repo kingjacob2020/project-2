@@ -77,6 +77,31 @@ function App() {
 
   return (
     <main className="App">
+      <aside className="sidebar">
+
+        {modules.map((module) => (
+          <div key={module.id} className="results">
+            <h3>{module.moduleName}</h3>
+            <p>CA Score: {module.caScore}</p>
+            <p>CA Max: {module.caMax}</p>
+            <p>CA Weight: {module.caWeight}%</p>
+            <p>Exam Weight: {module.examWeight}%</p>
+            <p>Target Grade: {module.targetGrade}%</p>
+
+            <button onClick={() => clearModules(module.id)}>
+
+              Remove Module
+
+            </button>
+
+
+          </div>
+        ))}
+      </aside>
+
+      <section className="main-content">
+        
+
       <h1>GradePilot</h1>
       <p>Calculate the exam score needed to reach your target grade</p>
 
@@ -158,32 +183,11 @@ function App() {
           <p>Status: {status}</p>
         </section>
       </section>
+    </section>
 
-      <section className="card">
-        <h2>Your Modules</h2>
-
-        {modules.map((module) => (
-          <div key={module.id} className="results">
-            <h3>{module.moduleName}</h3>
-            <p>CA Score: {module.caScore}</p>
-            <p>CA Max: {module.caMax}</p>
-            <p>CA Weight: {module.caWeight}%</p>
-            <p>Exam Weight: {module.examWeight}%</p>
-            <p>Target Grade: {module.targetGrade}%</p>
-
-            <button onClick={() => clearModules(module.id)}>
-
-              Remove Module
-
-            </button>
-
-
-          </div>
-        ))}
-      </section>
     </main>
-  );
+  )
 }
 
 export default App
-    
+
