@@ -74,29 +74,41 @@ function App() {
 
 
 
-
   return (
     <main className="App">
       <aside className="sidebar">
+        <h2>Your Modules</h2>
 
-        {modules.map((module) => (
+          {modules.map((module) => {
+            const moduleCaPercent = getCaPercent(module.caScore, module.caMax);
+
+            const moduleCaContribution = getCaContribution(
+              moduleCaPercent, 
+              module.caWeight
+            );
+
+            const moduleRequiredExamPercent = getRequiredExamPercent(
+              module.targetGrade,
+              moduleCaContribution,
+              module.examWeight
+            );
+          
+            const moduleStatus = getStatus(moduleRequiredExamPercent);
+
+        return(
           <div key={module.id} className="results">
             <h3>{module.moduleName}</h3>
-            <p>CA Score: {module.caScore}</p>
-            <p>CA Max: {module.caMax}</p>
-            <p>CA Weight: {module.caWeight}%</p>
-            <p>Exam Weight: {module.examWeight}%</p>
+            <p>CA Score: {module.caScore}/{module.caMax}</p>
             <p>Target Grade: {module.targetGrade}%</p>
+            <p>Required exam score: {moduleRequiredExamPercent.toFixed(1)}%</p>
+            <p>Status: {moduleStatus}</p>
 
             <button onClick={() => clearModules(module.id)}>
-
               Remove Module
-
             </button>
-
-
           </div>
-        ))}
+        );
+      })}
       </aside>
 
       <section className="main-content">
