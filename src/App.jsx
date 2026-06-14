@@ -45,6 +45,13 @@ function App() {
     };
 
     setModules([...modules, newModule]);
+
+    setModuleName('');
+    setCaScore('');
+    setCaMax('');
+    setCaWeight('');
+    setExamWeight('');
+    setTargetGrade('');
   }
 
 
@@ -72,7 +79,14 @@ function App() {
   const status = getStatus(requiredExamPercent);
 
 
-
+  function getStatusClass(status) {
+    if (status === 'Target grade already achieved') return 'status-safe';
+    if (status === 'Target grade is safe') return 'status-safe';
+    if (status === 'Target grade is achievable') return 'status-doable';
+    if (status === 'Target grade is difficult') return 'status-hard';
+    if (status === 'Target grade is extremely difficult') return 'status-impossible';
+    return '';
+  }
 
   return (
     <main className="App">
@@ -101,7 +115,7 @@ function App() {
             <p>CA Score: {module.caScore}/{module.caMax}</p>
             <p>Target Grade: {module.targetGrade}%</p>
             <p>Required exam score: {moduleRequiredExamPercent.toFixed(1)}%</p>
-            <p>Status: {moduleStatus}</p>
+            <p>Status: <span className={getStatusClass(moduleStatus)}>{moduleStatus}</span></p>
 
             <button onClick={() => clearModules(module.id)}>
               Remove Module
@@ -192,14 +206,14 @@ function App() {
           <p>CA Percentage: {caPercent.toFixed(1)}%</p>
           <p>CA Contribution: {caContribution.toFixed(1)}%</p>
           <p>Required exam score: {requiredExamPercent.toFixed(1)}%</p>
-          <p>Status: {status}</p>
+          <p>Status: <span className={getStatusClass(status)}>{status}</span></p>
         </section>
       </section>
     </section>
 
     </main>
-  )
-}
+    )
+  }
 
 export default App
 
