@@ -32,8 +32,35 @@ function App() {
     return [];
   });
 
+
+  function addModule() { 
+    if (!moduleName.trim()){
+      alert('Please enter a module name.');
+      return;
+  }
+
+  if (moduleName === '' || caScore === '' || caMax === '' || caWeight === '' || examWeight === '' || targetGrade === '') {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  if (Number(caWeight) > 0 && Number(caMax) <= 0){
+    alert('CA max score must be a positive number.');
+    return;
+  }
+
+  if (Math.abs(Number(caWeight) + Number(examWeight) - 100) > 0.01) {
+    alert('CA weight and exam weight must add up to 100%.');
+    return;
+  }
+
+  if (Number(targetGrade) < 0 || Number(targetGrade) > 100) {
+    alert('Target grade must be between 0 and 100.');
+    return;
+  }
+
   
-  function addModule() {
+
     const newModule = {
       id: crypto.randomUUID(),
       moduleName,
