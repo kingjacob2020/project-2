@@ -153,11 +153,10 @@ function App() {
       </aside>
 
       <section className="main-content">
-        
-
       <h1>GradePilot</h1>
       <p>Calculate the exam score needed to reach your target grade</p>
 
+    <div className="calculator-layout">
       <section className="card">
         <h2>Module Calculator</h2>
         
@@ -225,9 +224,9 @@ function App() {
         <button onClick={addModule}>
           Add Module
         </button>
-
-
-        <section className="results">
+      </section>
+        
+        <section className="results-panel">
           <h2>{moduleName || "Results"}</h2>
 
           <p>CA Percentage: {caPercent.toFixed(1)}%</p>
@@ -235,7 +234,7 @@ function App() {
           <p>Required exam score: {requiredExamPercent.toFixed(1)}%</p>
           <p>Status: <span className={getStatusClass(status)}>{status}</span></p>
         </section>
-      </section>
+      </div>
     </section>
 
     </main>
