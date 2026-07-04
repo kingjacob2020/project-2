@@ -10,6 +10,11 @@
   padding: 24px;
 }
 
+.results-panel{
+  flex: 1;
+  min-width: 0;
+}
+
 .main-content h1,
 .main-content > p {
   text-align: center;

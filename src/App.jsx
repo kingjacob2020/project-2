@@ -230,14 +230,17 @@ function App() {
         </button>
       </section>
         
-        <section className="results-panel">
-          <h2>{moduleName || "Results"}</h2>
 
-          <p>CA Percentage: {caPercent.toFixed(1)}%</p>
-          <p>CA Contribution: {caContribution.toFixed(1)}%</p>
-          <p>Required exam score: {requiredExamPercent.toFixed(1)}%</p>
-          <p>Status: <span className={getStatusClass(status)}>{status}</span></p>
-        </section>
+        {caScore && caMax && caWeight && examWeight && targetGrade && (
+          <section className="results-panel">
+            <h2>{moduleName || "Results"}</h2>
+
+            <p>CA Percentage: {caPercent.toFixed(1)}%</p>
+            <p>CA Contribution: {caContribution.toFixed(1)}%</p>
+            <p>Required exam score: {requiredExamPercent.toFixed(1)}%</p>
+            <p>Status: <span className={getStatusClass(status)}>{status}</span></p>
+          </section>
+        )}
       </div>
     </section>
     </div>
