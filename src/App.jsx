@@ -117,6 +117,12 @@ function App() {
 
   return (
     <main className="App">
+      <div className="top-header">
+      <h1>GradePilot</h1>
+        <p>Calculate the exam score needed to reach your target grade</p>
+      </div>
+
+    <div className="columns">
       <aside className="sidebar">
         <h2>Your Modules</h2>
 
@@ -153,8 +159,6 @@ function App() {
       </aside>
 
       <section className="main-content">
-      <h1>GradePilot</h1>
-      <p>Calculate the exam score needed to reach your target grade</p>
 
     <div className="calculator-layout">
       <section className="card">
@@ -236,7 +240,7 @@ function App() {
         </section>
       </div>
     </section>
-
+    </div>
     </main>
     )
   }

@@ -6,30 +6,41 @@
 
 .App{
   display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.main-content h1,
+.main-content > p {
+  text-align: center;
+}
+
+.main-content h1{
+  margin-top: 0;
+  text-align: center;
+}
+
+.columns{
+  display: flex;
   gap: 24px;
   align-items: flex-start;
 }
 
-.main-content h1{
-  margin-top: 2;
-  text-align: center;
-}
-
 .main-content{
-  flex: 1;
+  flex: 2;
+  width: 100%;
 }
 
 .sidebar {
-  width: 260px;
-  margin-top: 115px;
+  flex: 1;
 }
 
 .results{
-  margin-bottom: 16px;
+  flex: 1;
 } 
 
 .card{
-  width: 300px;
+  flex: 1;
 }
 
 label{
